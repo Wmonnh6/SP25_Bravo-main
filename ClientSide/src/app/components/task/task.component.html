@@ -1,0 +1,111 @@
+<div>
+  <p-toast />
+  <div class="table-container">
+    <div class="table-header">
+      <h2>Task Manager</h2>
+      <p-button label="Add New Task" icon="pi pi-plus" (click)="showNewTaskDialog(newTaskForm)"></p-button>
+    </div>
+
+    <!-- task.component.html -->
+    <p-table [value]="tasks" showGridlines [loading]="loading" [responsive]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="task-table-header">Task Name</th>
+          <th class="task-table-header">Time Off?</th>
+          <th class="task-table-header">Active</th>
+          <th class="task-table-header">Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-task>
+        <tr>
+          <td class="task-table-cell">{{ task.name }}</td>
+          <td class="task-table-cell">{{ task.isTimeOff ? 'Yes' : 'No' }}</td>
+          <td class="task-table-cell">{{ task.isActive ? 'Yes' : 'No' }}</td>
+          <td>
+            <!-- Edit Button -->
+            <button pButton type="button" label="Edit" class="custom-edit-button" (click)="editTask(task.id)"></button>
+            <!-- Delete Button -->
+            <button pButton type="button" label="Delete" class="custom-delete-button"(click)="confirmDelete(task)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!-- Message for No Tasks Available -->
+    <div *ngIf="tasks.length === 0" class="no-tasks">
+      No Tasks Available.
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Dialog for Deleting Task -->
+<p-dialog header="Confirm Deletion" [(visible)]="displayDialog" [responsive]="true" [modal]="true">
+  <div *ngIf="taskToDelete">
+    <p class="dialogue-content">Are you sure you want to delete task: </p>
+    <br>
+    <strong class="confirm-delete-task-name">ID: &emsp; {{taskToDelete.id}}</strong>
+    <br>
+    <strong class="confirm-delete-task-name">NAME: &emsp; {{ taskToDelete.name }}</strong>
+  </div>
+  <div>
+    <br>
+    <br>
+    <button pButton label="Yes" class="confirm-delete-button" (click)="deleteTaskById(taskToDelete.id)"></button>
+    <button pButton label="No" class="cancel-delete-button" (click)="cancelDelete()"></button>
+  </div>
+</p-dialog>
+
+<!-- Dialog for Adding a New Task -->
+<p-dialog header="Add Task" [(visible)]="newTaskDialog" [modal]="true" closable="false" [style]="{ width: '30rem' }">
+  <span class="p-text-secondary block mb-8 p-dialog-margins">Enter the Task name and whether it is a time off task.</span>
+  <form #newTaskForm="ngForm">
+    <div class="p-dialog-margins">
+      <p-iftalabel>
+        <label for="taskname">Task Name:</label>
+        <input pInputText required fluid="true" id="taskname" [(ngModel)]="newTask.name" name="taskname" />
+      </p-iftalabel>
+    </div>
+    <div class="p-dialog-margins">
+      <label for="is-time-off">Is this for time off?&emsp;</label>
+      <p-checkbox id="is-time-off" [(ngModel)]="newTask.isTimeOff" [binary]="true" name="is-time-off" />
+    </div>
+  </form>
+  <div class="flex justify-end gap-2 p-dialog-margins">
+    <button pButton (click)="addNewTask(newTaskForm)">
+      <span pButtonLabel>Add</span>
+    </button>
+    <button pButton severity="secondary" (click)="cancelNewTaskDialog(newTaskForm)" severity="danger">
+      <span pButtonLabel>Cancel</span>
+    </button>
+  </div>
+</p-dialog>
+
+<!-- Dialog for Editing a Task -->
+<p-dialog header="Edit Task" [(visible)]="editTaskDialog" [modal]="true" closable="false" [style]="{ width: '30rem' }">
+  <span class="p-text-secondary block mb-8 p-dialog-margins">Update the task details.</span>
+  <form #editTaskForm="ngForm">
+    <div class="p-dialog-margins">
+      <p-iftalabel>
+        <label for="edittaskname">Task Name:</label>
+        <input pInputText required fluid="true" id="edittaskname" [(ngModel)]="taskToEdit.name" name="edittaskname" />
+      </p-iftalabel>
+    </div>
+    <div class="p-dialog-margins">
+      <label for="edit-is-time-off">Is this for time off?&emsp;</label>
+      <p-checkbox id="edit-is-time-off" [(ngModel)]="taskToEdit.isTimeOff" [binary]="true" name="edit-is-time-off" />
+    </div>
+    <div class="p-dialog-margins">
+      <label for="edit-is-active">Active?&emsp;</label>
+      <p-checkbox id="edit-is-active" [(ngModel)]="taskToEdit.isActive" [binary]="true" name="edit-is-active" />
+    </div>
+  </form>
+  <div class="flex justify-end gap-2 p-dialog-margins">
+    <button pButton (click)="updateTask()">
+      <span pButtonLabel>Save</span>
+    </button>
+    <button pButton severity="secondary" (click)="cancelEditTaskDialog()" severity="danger">
+      <span pButtonLabel>Cancel</span>
+    </button>
+  </div>
+</p-dialog>

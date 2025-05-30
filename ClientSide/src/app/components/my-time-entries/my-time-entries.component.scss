@@ -1,0 +1,83 @@
+.table-container {
+    margin-top: 50px;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+p-table {
+    width: 100%;
+}
+
+.button-group {
+    display: flex;
+}
+
+.button-group p-button {
+    margin: 5px;
+}
+
+.empty-message {
+    text-align: center;
+}
+
+.date-range {
+    color: black;
+    text-align: center;
+    font-size: x-large;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    margin-bottom: 2rem;
+}
+
+.cancel-button {
+    margin-right: 10px;
+}
+
+.error-msg {
+    color: var(--red-500, #dc3545);
+    display: block;
+    margin-top: 2px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2 {
+    color: black;
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .rejected {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .approved {
+    color: green;
+    font-weight: bold;
+  }
+
+  .comment-cell {
+    white-space: pre-line;
+  }   

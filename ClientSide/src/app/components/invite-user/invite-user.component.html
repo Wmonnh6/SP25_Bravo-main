@@ -1,0 +1,31 @@
+<!-- A page for administrators to invite employees to create accounts. -->
+<!-- A page with a form to enter the email address and specify if the employee is an administrator. -->
+
+<p-panel header="Employee Invite page">
+    <article>
+        To invite an employee to register for My Time Entry fill in their
+        email address and check the box if they will have administrative privileges.
+    </article> <br/>
+    <form>
+        <p-iftalabel>
+            <label for="employee-email">Email: </label>
+            <input type="email" id="employee-email" pInputText required ngNativeValidate [(ngModel)]="employeeEmail" name="employee-email" #email="ngModel" [ngModelOptions]="{updateOn: 'blur'}" email/>
+        </p-iftalabel>
+        <br/>
+        <div *ngIf="email.dirty && email.invalid" class="alert alert-danger">
+            <div *ngIf="email.hasError('required')">
+                Email address is required.
+            </div>
+            <div *ngIf="email.hasError('email')">
+                Invalid email address.
+            </div>
+        </div>
+        <br/>
+        <label for="is-admin">Administrator?&emsp;</label>
+        <p-checkbox id="is-admin" [(ngModel)]="isAdmin" [binary]="true" name="is-admin"></p-checkbox>
+    </form> <br/>
+    <button pButton (click)="createInvite()">
+        <span pButtonLabel>Invite</span>
+    </button>
+</p-panel>
+<p-toast/>

@@ -1,0 +1,60 @@
+/* Center the user profile container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f4f4f4;
+}
+
+/* Style the user profile panel */
+.profile-panel {
+    width: 350px;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Style the form fields */
+.password-tooltip {
+    font-size: 14px;
+    color: red;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.p-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.p-field label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Make inputs full width */
+input[pInputText] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align-last: right;
+}
+
+/* Add spacing between buttons */
+button[pButton] {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.p-button-text {
+    margin-top: 0.5rem;
+}

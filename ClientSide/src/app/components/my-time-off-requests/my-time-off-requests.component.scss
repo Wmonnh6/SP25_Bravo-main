@@ -1,0 +1,35 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+p-table {
+    width: 100%;
+}
+
+.card {
+    padding: 1.5rem;
+    margin-top: 50px;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pending {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .rejected {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .approved {
+    color: green;
+    font-weight: bold;
+  }

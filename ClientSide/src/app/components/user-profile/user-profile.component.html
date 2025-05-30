@@ -1,0 +1,72 @@
+<!-- A page (My Profile) where users can update their personal information, including their first name, last name, and password.
+Fields: -->
+<p-toast/>
+<div class="profile-container">
+<p-panel header="Update User Profile" class="profile-panel">
+    <form #profileForm="ngForm" match-password>
+        <p-iftalabel class="p-field">
+            <label for="first-name">First Name:</label>
+            <input type="text"
+                id="first-name"
+                pInputText
+                required
+                pattern="^[a-zA-Z]+$"
+                maxlength="512"
+                [(ngModel)]="model.firstName"
+                (focus)="showFirstnameTooltip = true"
+                (blur)="showFirstnameTooltip = false"
+                name="first-name"
+                #firstName="ngModel"
+                />
+        </p-iftalabel>
+        <p-message size="small" severity="info" text="First name must be only letters" [hidden]="!showFirstnameTooltip" />
+        <p-iftalabel class="p-field">
+            <label for="last-name">Last Name:</label>
+            <input type="text"
+                id="last-name"
+                pInputText
+                required
+                pattern="^[a-zA-Z]+$"
+                maxlength="512"
+                [(ngModel)]="model.lastName"
+                (focus)="showLastnameTooltip = true"
+                (blur)="showLastnameTooltip = false"
+                name="last-name"
+                #lastName="ngModel"
+                />
+        </p-iftalabel>
+        <p-message size="small" severity="info" text="Last name must be only letters" [hidden]="!showLastnameTooltip" />
+        <p-iftalabel class="p-field">
+            <label for="new-password">New Password (Optional):</label>
+            <input type="password"
+                id="new-password"
+                pInputText
+                [(ngModel)]="model.newPass"
+                (focus)="showPasswordTooltip = true"
+                (blur)="showPasswordTooltip = false"
+                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%*]).+$"
+                name="new-password"
+                #newPassword="ngModel"/>
+        </p-iftalabel>
+        <p-message size="small" severity="success" text="Password valid" [hidden]="newPassword.pristine || (newPassword.value === '' || newPassword.invalid)" />
+        <p-message size="small" severity="error" text="Password invalid" [hidden]="newPassword.pristine || (newPassword.value === '' || newPassword.valid)" />
+        <p-iftalabel class="p-field">
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password"
+                id="confirm-password"
+                pInputText
+                [(ngModel)]="model.confirmPass"
+                name="confirm-password"
+                #confirmPassword="ngModel"/>
+        </p-iftalabel>
+        <p-message size="small" severity="success" text="Passwords match" [hidden]="confirmPassword.pristine || confirmPassword.value === '' || confirmPassword.invalid" />
+        <p-message size="small" severity="error" text="Passwords do not match" [hidden]="confirmPassword.pristine || confirmPassword.value === '' || confirmPassword.valid" />
+        <button pButton (click)="resetForm(profileForm);" severity="secondary">
+            <span pButtonLabel>Reset</span>
+        </button>
+        <button pButton (click)="updateUserProfile(profileForm)" [disabled]="!((firstName.dirty || lastName.dirty) || (newPassword.dirty && profileForm.valid))">
+            <span pButtonLabel>Update</span>
+        </button>
+    </form>
+</p-panel>
+</div>

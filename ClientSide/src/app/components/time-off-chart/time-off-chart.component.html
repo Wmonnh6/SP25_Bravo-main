@@ -1,0 +1,18 @@
+<div class="card">
+  <h2>Time Off Summary</h2>
+
+  <!-- Month Selector -->
+  <div class="month-selector">
+    <p-button (click)="previousMonth()" label="Previous"></p-button>
+    <span class="month-label">{{ currentMonth | date: 'MMMM yyyy' }}</span>
+    <p-button (click)="nextMonth()" label="Next"></p-button>
+    <!-- Button to return to the current month -->
+    <p-button *ngIf="isDifferentMonth()" (click)="goToCurrentMonth()" label="Current Month" class="current-month-button"
+      severity="info"></p-button>
+  </div>
+  <br>
+  <div>
+    <p *ngIf="!chartData">No time-off data available for the selected month.</p>
+    <p-chart *ngIf="chartData" height="80vh" type="bar" [data]="chartData" [options]="chartOptions"></p-chart>
+  </div>
+</div>

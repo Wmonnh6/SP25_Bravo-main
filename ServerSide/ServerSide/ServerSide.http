@@ -1,0 +1,12 @@
+@ServerSide_HostAddress = https://localhost:44391
+
+GET {{ServerSide_HostAddress}}/api/test/getSecured
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwianRpIjoiN2NiN2M3ZmMtYWU5ZC00MmM5LWFkNzctNTc4ZjJiN2Q0NmU4IiwiaXNBZG1pbiI6ImZhbHNlIiwiZXhwIjoxNzM5MzM4ODYwLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjQ0MzkxIiwiYXVkIjoiaHR0cDovL2xvY2FsaG9zdDo0MjAwIn0.lOfNmP1hCRDmx2-7Vutg-Mvu3YRjM9kcT9i2Fo8xEZE
+
+###
+
+GET {{ServerSide_HostAddress}}/api/test/get
+Accept: application/json
+
+###

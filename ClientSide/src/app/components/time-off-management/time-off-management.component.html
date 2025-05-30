@@ -1,0 +1,115 @@
+<p-toast />
+<div class="card">
+    <div>
+        <h2>Time Off Management</h2>
+        <div class="selection">
+            <div style="margin-bottom: 10px; margin-right: 10px;">
+                <label>Employee:</label>
+                <p-select [options]="employees" (onChange)="onEmployeeChange($event)" showClear="true"
+                    [(ngModel)]="currentEmployeeId" optionLabel="name" optionValue="id" placeholder="Select an employee"
+                    class="w-full md:w-56">
+                </p-select>
+            </div>
+
+            <div style="margin-bottom: 10px; margin-right: 10px;">
+                <label>Status Filter:</label>
+                <p-select [options]="requestStatus" (onChange)="onRequestStatusChange($event)"
+                    [(ngModel)]="currentRequestStatus" placeholder="Select status" class="w-full md:w-56">
+                </p-select>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+                <label>Date Filter:</label>
+                <p-datepicker [(ngModel)]="rangeDates" selectionMode="range" [readonlyInput]="true"
+                    [showClear]="true" (onClose)="onDateChange($event)" (onClear)="onDateClear()" />
+            </div>
+        </div>
+
+    </div>
+    <div class="table-header">
+    </div>
+    <!-- Table to display time off requests -->
+    <p-table [value]="timeOffRequests" [loading]="loading" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" [lazy]="false">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="user.firstName">Employee Name <p-sortIcon field="user.firstName"/></th>
+                <th pSortableColumn="hours">Hours Requested <p-sortIcon field="hours"/></th>
+                <th pSortableColumn="date">Date <p-sortIcon field="date"/></th>
+                <th pSortableColumn="timeOffRequest.status">Status <p-sortIcon field="timeOffRequest.status"/></th>
+                <th>Comments</th>
+                <th class="task-table-header">Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-request>
+            <tr>
+                <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
+                <td>{{ request.hours }}</td>
+                <td>{{ request.date | date: 'fullDate' }}</td>
+                <td [ngClass]="request.timeOffRequest.status">
+                    {{ request.timeOffRequest.status }}
+                </td>
+                <td class="comment-cell">{{ request.comment }}</td>
+                <td>
+                    <div *ngIf="request.timeOffRequest.status == 'Pending'">
+                        <!-- Edit Button -->
+                        <button pButton type="button" label="Approve" (click)="confirmApproval(request)" severity="info" style="margin-right: 5px;"></button>
+                        <!-- Delete Button -->
+                        <button pButton type="button" label="Reject" (click)="confirmRejection(request)" severity="danger"></button>
+                    </div>
+                    <div *ngIf="request.timeOffRequest.status != 'Pending'">-</div>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template #emptymessage>
+            <tr>
+                <td class="empty-message" colspan="6">No time off request found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!-- Confirmation Dialog for Approving Request -->
+<p-dialog header="Confirm Approval" [(visible)]="isDialogVisible" [modal]="true" [closable]="true" [style]="{width: '400px'}">
+    <p class="dialog-header"><span class="approve-text">APPROVE</span> this request?</p>
+    <br>
+    <div class="dialog-content-name">
+        <p><strong>{{ currentRequest?.user.firstName }} {{ currentRequest?.user.lastName }}</strong> has requested time off.</p>
+    </div>
+    <div class="dialog-content-comment">
+        <p><strong>Comment: &emsp; </strong> {{ currentRequest?.comment }}</p>
+    </div>
+    <div class="dialog-content-date">
+        <p><strong>Date: &emsp; </strong> {{ currentRequest?.date | date: 'MMMM dd, yyyy' }}</p>
+    </div>
+    <br>
+    <div class="dialog-footer">
+        <button pButton type="button" class="dialog-no-button" label="No" icon="pi pi-times" (click)="onCancel()" severity="danger"></button>
+        <button pButton type="button" label="Yes" icon="pi pi-check" (click)="approve(currentRequest)" severity="success"></button>
+    </div>
+</p-dialog>
+
+<!-- Confirmation Dialog for Rejecting Request -->
+<p-dialog header="Confirm Rejection" [(visible)]="isRejectDialogVisible" [modal]="true" [closable]="true" [style]="{width: '400px'}">
+    <p class="dialog-header"><span class="reject-text">REJECT</span> this request?</p>
+    <br>
+    <div class="dialog-content-name">
+        <p><strong>{{ currentRequest?.user.firstName }} {{ currentRequest?.user.lastName }}</strong> has requested time off.</p>
+    </div>
+    <div class="dialog-content-comment-reject">
+        <p><strong>Comment: &emsp; </strong> {{ currentRequest?.comment }}</p>
+    </div>
+    <div class="dialog-content-comment">
+        <label for="reject-comment">Optional Comment: </label>
+        <br>
+        <input class="reject-comment-input" id="reject-comment" [(ngModel)]="rejectComment" type="text" maxLength="200" placeholder="Optional rejection comment" />
+        <small *ngIf="rejectComment.length > 0">{{ rejectComment.length }} / 200 characters</small>
+    </div>
+    <br>
+    <div class="dialog-footer">
+        <button pButton type="button" class="dialog-no-button" label="No" icon="pi pi-times" (click)="onRejectCancel()" severity="danger"></button>
+        <button pButton type="button" label="Yes" icon="pi pi-check" (click)="reject(currentRequest)" severity="success"></button>
+    </div>
+</p-dialog>

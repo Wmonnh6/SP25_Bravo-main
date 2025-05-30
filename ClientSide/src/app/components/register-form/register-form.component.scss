@@ -1,0 +1,140 @@
+  html, body {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+   }
+   
+   form {
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+   }
+  
+  .register-container {
+    width: 380px; /* Reduce width */
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .register-form-header {
+    margin-bottom: 20px;
+    color: rgb(46, 43, 43);
+  }
+  
+  .register-form-header h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 50px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: rgb(46, 43, 43);
+    text-align: left;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .password-tooltip {
+    font-size: 14px;
+    color: red;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .signin-link {
+    text-align: center;
+    margin-top: 20px;
+    color: rgb(46, 43, 43);
+  }
+
+  .signin-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .signin-link a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .password-tooltip, .confirm-password-tooltip, .email-tooltip, .token-tooltip {
+    font-size: 12px;
+    margin-top: 5px;
+    display: inline-block;
+  }
+  
+  .tooltip-invalid, .confirm-tooltip-invalid, .email-tooltip-invalid, .token-tooltip-invalid, .invalid {
+    color: red;
+  }
+  
+  .tooltip-valid, .confirm-tooltip-valid, .email-tooltip-valid, .token-tooltip-valid, .valid {
+    color: green;
+  }
+  
+  .checkmark::before {
+    content: '✔';
+    color: green;
+  }
+  
+  .xmark::before {
+    content: '✖';
+    color: red;
+  }
+
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error-popup {
+    color: red;
+    background-color: #fff0f0;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+
+  .password-length-checker {
+    color: black;
+  }

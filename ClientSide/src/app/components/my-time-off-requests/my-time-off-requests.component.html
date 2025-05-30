@@ -1,0 +1,63 @@
+<p-toast />
+<div class="card">
+    <div>
+        <h2>My Time Off Requests</h2>
+    </div>
+    <div class="table-header">
+    </div>
+
+    <!-- Table to display time off requests -->
+    <p-table [value]="timeEntries" [loading]="loading">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Task Name</th>
+                <th>Requested Date</th>
+                <th>Requested Hours</th>
+                <th>Status</th>
+                <th>Comments</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-entry>
+            <tr>
+                <td>
+                    {{ entry.task.name }}
+                  </td>
+                <td>{{ entry.date | date: 'fullDate' }}</td>
+                <td>{{ entry.hours }}</td>
+                <td>
+                    <span [ngClass]="{
+                    'pending': entry.timeOffRequest?.status === 'Pending',
+                    'rejected': entry.timeOffRequest?.status === 'Rejected',
+                    'approved': entry.timeOffRequest?.status === 'Approved'
+                    }">
+                    {{ entry.timeOffRequest?.status || '' }}
+                    </span>
+                </td>
+                <td>{{ entry.comment }}</td>
+                <td>
+                    <!-- Delete Button -->
+                    <button [disabled]="timeHasPassed(entry.date)" pButton type="button" label="Delete" class="custom-delete-button" (click)="confirmDeleteTimeOffRequest(entry.timeOffRequest.id, entry.date)" severity="danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Display empty message when there are no time off requests for the user -->
+        <ng-template #emptymessage>
+            <tr>
+                <td class="empty-message" colspan="6">No time off requests found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <!-- Confirmation Dialog for Deleting Time Off Request -->
+<p-dialog header="Confirm Deletion" [(visible)]="deleteConfirmDialog" [modal]="true">
+    <p class="dialogue-content">Are you sure you want to delete this time off request?</p>
+    <div class="btns p-dialog-margins">
+        <button pButton label="Yes" class="confirm-delete-button" (click)="deleteTimeOffRequest()"></button>
+        <button pButton label="No" class="cancel-delete-button" (click)="cancelDelete()" severity="secondary"></button>
+    </div>
+  </p-dialog>
+</div>

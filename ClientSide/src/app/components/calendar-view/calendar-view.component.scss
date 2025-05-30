@@ -1,0 +1,8 @@
+.calendar {
+    padding: 15px;
+}
+
+::ng-deep .fc .fc-daygrid-day-number,
+::ng-deep .fc .fc-daygrid-event, ::ng-deep .fc-toolbar-title, h2 {
+    color: black !important;
+}

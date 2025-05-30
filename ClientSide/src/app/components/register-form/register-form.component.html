@@ -1,0 +1,141 @@
+<html>
+<div class="register-form-header">
+    <h1>Register Your Account</h1>
+    <p-toast/>
+  
+    <div class="register-container">
+      <form class="register-form" (ngSubmit) = "createAccount()">
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-control" 
+            placeholder="Enter your email" 
+            formControlName="email"
+            required
+            (input)="onEmailChange($event)"
+            (focus)="showEmailTooltip = true"
+            (blur)="showEmailTooltip = false"
+            />
+        <div *ngIf="showEmailTooltip" class="email-tooltip" [ngClass]="{'email-tooltip-invalid': !emailValid, 'email-tooltip-valid': emailValid}">
+          <ng-container *ngIf="!emailValid; else validEmailTooltip">
+            Please enter a valid Email.
+          </ng-container>
+          <ng-template #validEmailTooltip>
+            Email is valid.
+          </ng-template>
+        </div>
+      </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            formControlName="firstName"
+            class="form-control" 
+            placeholder="Enter your first name" />
+        </div>
+    
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            formControlName="lastName"
+            class="form-control" 
+            placeholder="Enter your last name" />
+        </div>
+    
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            class="form-control" 
+            placeholder="Create a password"
+            formControlName="password"
+            minlength="8"
+            required
+            (focus)="showPasswordTooltip = true"
+            (blur)="showPasswordTooltip = false"
+            (input)="onPasswordChange($event)"
+            
+          />
+           <!-- Password Tooltip with Individual Requirements -->
+           <div *ngIf="showPasswordTooltip" class="password-tooltip">
+            <div [ngClass]="{'valid': hasMinLength, 'invalid': !hasMinLength}">
+              <span [ngClass]="{'checkmark': hasMinLength, 'xmark': !hasMinLength}"></span> At least 8 characters
+            </div>
+            <div [ngClass]="{'valid': hasUpperCase, 'invalid': !hasUpperCase}">
+              <span [ngClass]="{'checkmark': hasUpperCase, 'xmark': !hasUpperCase}"></span> At least one uppercase letter
+            </div>
+            <div [ngClass]="{'valid': hasNumber, 'invalid': !hasNumber}">
+              <span [ngClass]="{'checkmark': hasNumber, 'xmark': !hasNumber}"></span> At least one number
+            </div>
+            <div [ngClass]="{'valid': hasSpecialChar, 'invalid': !hasSpecialChar}">
+              <span [ngClass]="{'checkmark': hasSpecialChar, 'xmark': !hasSpecialChar}"></span> At least one special character (!&#64;#$%^&*)
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input 
+            type="password" 
+            id="confirmPassword" 
+            class="form-control" 
+            placeholder="Re-enter your password" 
+            formControlName="confirmPassword"
+            required
+            (focus)="showConfirmPasswordTooltip = true"
+            (blur)="showConfirmPasswordTooltip = false"
+            (input)="onConfirmPasswordChange($event)"
+            />
+            <div *ngIf="showConfirmPasswordTooltip" class="confirm-password-tooltip" [ngClass]="{'confirm-tooltip-invalid': !passwordsMatch, 'confirm-tooltip-valid': passwordsMatch}">
+              <ng-container *ngIf="!passwordsMatch; else matchTooltip">
+                Passwords must match.
+              </ng-container>
+              <ng-template #matchTooltip>
+                Passwords match.
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="invitationToken">Invitation Token</label>
+            <input 
+              type="text" 
+              id="invitationToken" 
+              class="form-control" 
+              placeholder="Enter your invitation token"
+              formControlName="invitationToken"
+              required
+              (focus)="showTokenTooltip = true"
+              (blur)="showTokenTooltip = false"
+              (input)="onTokenChange($event)"
+            />
+            <div *ngIf="showTokenTooltip" class="token-tooltip" [ngClass]="{'token-tooltip-invalid': !tokenValid, 'token-tooltip-valid': tokenValid}">
+              <ng-container *ngIf="!tokenValid; else validTokenTooltip">
+                Token is required.
+              </ng-container>
+              <ng-template #validTokenTooltip>
+                Token is valid.
+              </ng-template>
+            </div>
+          </div>
+
+        <div class="form-group">
+          <button (click)="createAccount()" type="button" class="btn btn-primary" [disabled]="!isFormValid()">Submit</button>
+        </div>
+      </form>
+      <div class="signin-link">
+        <p>Already Registered?&emsp;<a (click)="navLoginPage()">Sign In</a></p>
+      </div>
+    </div>
+    <div *ngIf="passwordError" class="error-popup">
+      <p>Password does not meet minimum requirements</p>
+    </div>
+    </div>
+    </html>

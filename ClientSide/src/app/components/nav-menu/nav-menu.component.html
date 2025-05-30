@@ -1,0 +1,11 @@
+<div class="card">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="end"> 
+            @if (user) {
+                <span class="welcome-msg">Welcome, {{user.firstName}} {{user.lastName}}</span>
+            }
+            <!--Login/Logout button that will change depending on the user's login status-->
+            <p-button [label]="loginItem.label" [icon]="loginItem.icon" (click)="loginItem.command()" text></p-button>
+        </ng-template>
+    </p-menubar>
+</div>

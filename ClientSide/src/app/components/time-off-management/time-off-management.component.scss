@@ -1,0 +1,84 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+p-table {
+    width: 100%;
+}
+
+.card {
+    padding: 1.5rem;
+    margin-top: 50px;
+}
+
+.selection {
+    display: flex;
+}
+
+.Pending { color: orange; font-weight: bold; }
+.Approved { color: green; font-weight: bold; }
+.Rejected { color: red; font-weight: bold; }
+
+
+/* Center the dialog header and make the text bold and larger */
+.dialog-header {
+    text-align: center; /* Center the text */
+    //font-size: 25px;    /* Increase the font size */
+    font-weight: bold;  /* Make the text bold */
+}
+
+/* Dialog content centering */
+.dialog-content-name, .dialog-content-comment, .dialog-content-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dialog content centering */
+.dialog-content-comment-reject {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dialog-content-date {
+    margin-bottom: 20px;
+}
+
+/* Dialog footer */
+.dialog-footer {
+    display: flex;
+    justify-content: center; 
+    padding: 10px;
+}
+
+.dialog-no-button{
+    margin-right: 20px;
+}
+
+/* Color the word "APPROVE" green */
+.approve-text {
+    color: green; 
+}
+
+/* Color the word "REJECT" green */
+.reject-text {
+    color: red; 
+}
+
+.reject-comment-input {
+    width: 100%;
+    line-height: 32px;
+    font-size: 16px;
+    padding: 8px;
+}
+
+.comment-cell {
+    white-space: pre-line;
+}
