@@ -2,7 +2,7 @@
 
 This is the team repository for Bravo
 
-Project
+# Project
 This application allows users to log their working hours for managerial tracking.
 
 Administrators can invite employees to create accounts by providing a unique email address. The employee will then receive an invitation via email. Upon clicking the invitation link, the employee must complete the account creation form by providing a unique username, first name, last name, and password. Users will also have the ability to reset or change their password.
@@ -11,10 +11,10 @@ Once the account is created, users can log in by the email and password. Logged-
 
 Administrators can create tasks that employees can select when logging their working hours. They can also deactivate tasks, making them unavailable for future use. Additionally, administrators have the ability to view, delete, and update time entries for other employees.
 
-Project Name
+# Project Name
 My Time Entry
 
-Project Description
+# Project Description
 The project solves the problem of efficiently tracking and managing employee work hours. It provides a platform where employees can log their hours worked, allowing for accurate and easily accessible time records. Administrators can track and manage employee time entries, ensuring accountability and transparency.
 
 The application allows administrators to invite employees to create accounts, log in, and update their information. Employees can record their hours worked by adding time entries, which include the day, hours worked, the task performed, and any additional comments. This information is organized on a weekly basis for easy review.
