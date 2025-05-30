@@ -11,31 +11,31 @@ Once the account is created, users can log in by the email and password. Logged-
 
 Administrators can create tasks that employees can select when logging their working hours. They can also deactivate tasks, making them unavailable for future use. Additionally, administrators have the ability to view, delete, and update time entries for other employees.
 
-# Project Name
+### Project Name
 My Time Entry
 
-# Project Description
+### Project Description
 The project solves the problem of efficiently tracking and managing employee work hours. It provides a platform where employees can log their hours worked, allowing for accurate and easily accessible time records. Administrators can track and manage employee time entries, ensuring accountability and transparency.
 
 The application allows administrators to invite employees to create accounts, log in, and update their information. Employees can record their hours worked by adding time entries, which include the day, hours worked, the task performed, and any additional comments. This information is organized on a weekly basis for easy review.
 
 Additionally, administrators have the ability to create and deactivate tasks, and they can view, update, or delete time entries from employees. This system ensures smooth time management, making it easier for both employees and administrators to monitor work hours and ensure accurate payroll or project tracking.
 
-Team
+## Team
 Team details follow
 
-495 Project Leader
+### 495 Project Leader
 Majed Alasemi
 
-394 Students
+### 394 Students
 Wessley Monnin
 Aaron Voymas
 
-294 Students
+### 294 Students
 Ava Barrick
 Jack Gifford
 
-Set Up
+## Set Up
 Details on how to set up the project follow.
 
 Install the following tools:
@@ -72,13 +72,13 @@ https://angular.dev/overview
 https://angular.dev/cli
 We are going to use PrimeNg for the front-end with Angular https://primeng.org/autocomplete
 
-Running the Back-End:
+# Running the Back-End:
 Navigate to the ServerSide folder and open the "ServerSide.sln" file.
 It should open by Visual Studio.
 Inside Visual Studio, click the IIS Express as showing in this image: alt text or Debug -> Start Debugging.
 After that, the back-end project should be running.
 
-Running the Front-End:
+# Running the Front-End:
 Open the command line and run: npm install -g @angular/cli
 Open the client-side folder by Visual Studio Code and type “npm install” and then enter.
 When the installation is complete, type “ng s” and enter to run the Angular project.
